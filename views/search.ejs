@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="renderer" content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>查询页面 - 艺奇影院</title>
+	<style type="text/css">
+		body {
+			background: #9999CC;
+		}
+		h1 {
+			text-align: center;
+		}
+		.container {
+			margin: 0 auto;
+			display: grid;
+			gap: 20px;
+			width: 100%;
+			grid-template-columns: 1fr;
+			place-content: center;
+			place-items: center;
+			grid-auto-flow: row dense;
+		}
+		.item {
+			border: 1px solid #ccc;
+			background: white;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+		.item:hover {
+			border: 1px solid #699f00;
+		}
+		.left {
+			width: 30%;
+			height: auto;
+			float: left;
+			overflow: hidden;
+		}
+		.right {
+			width: 60%;
+			height: auto;
+			float: left;
+			margin-left: 20px;
+		}
+		.r_up {
+			width: 100%;
+		}
+		.r_down {
+			width: 100%;
+		}
+		img {
+			width: 160px;
+			height: auto;
+		}
+		p {
+			text-indent: 2em;
+			font-size: 12px;
+		}
+		 span {
+			display: block;
+			float: left;
+			border: 1px solid #ccc;
+			min-width: 25px;
+			height: 35px;
+			line-height: 35px;
+			text-align: center;
+			font-family: "Times New Roman",Georgia,Serif;
+			margin: 2px;
+			padding: 0 5px;
+			overflow: hidden;
+		} 
+		span:hover {
+			background: #699f00;
+		}
+		a:link {
+			color: #666;
+			text-decoration: none;
+		}     
+		a:visited {
+			color: #666;
+			text-decoration: none;
+		}  
+		a:hover {
+			color: #666;
+			text-decoration: none;
+		}    
+		a:active {
+			color: #666;
+			text-decoration: none;
+		}   
+
+		@media only screen and (min-width: 1000px) {
+			.container {
+				width: 1600px;
+				margin: 50px auto;
+				grid-template-columns: repeat(3, 1fr);
+			}
+		}		
+	</style>
+</head>
+<body>
+	<h1>为您找到如下影片</h1>
+
+	<div class="container">
+		<% for(let i in data) { %>
+		<div class="item">
+			<div class="left">
+				<img src="https:<%= data[i].imgsrc %>" alt="">
+			</div>
+
+			<div class="right">
+				<div class="r_up">
+					<h3><%= data[i].title %></h3>
+					<p><%= data[i].txt %></p>
+				</div>
+				<div class="r_down">
+					<% if( data[i].list.length > 0 ) { %>
+						<% for(let j in data[i].list ) { %>
+							<span><a href="/play?url=<%= data[i].list[j].href %>" target="_blank"><%= data[i].list[j].num %></a></span>
+						<% } %>
+					<% } %>
+				</div>
+			</div>
+		</div>
+		<% } %>
+	</div>
+</body>
+</html>

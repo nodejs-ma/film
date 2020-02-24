@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>播放页面 - 艺奇影院</title>
+	<style type="text/css">
+		body {
+			text-align: center;
+			color: #699f00;
+			background: #ccc;
+		}
+		#box {
+			display: grid;
+			grid-template-columns: 1fr;
+			grid-gap: 10px;
+		}
+		#play {
+			background: #ccc;
+			padding: 5px;
+			border: 1px solid #999;
+			box-shadow: 2px 5px 5px #666;
+		}
+		iframe {
+			width: 100%;
+			height: 220px;
+		}
+
+		@media only screen and (min-width: 1000px) {
+			#box {
+				grid-template-columns: 1fr 8fr 1fr;
+			}
+			iframe {
+				width: 100%;
+				height: 760px;
+			}
+		}			
+	</style>
+</head>
+<body>
+	<h1>精彩即将开始</h1>
+	<div id="box">
+		<div>预留广告</div>
+		<div id="play">
+			<iframe src="http://jx.598110.com/index.php?url=<%= url %>" frameborder=0></iframe>
+		</div>
+		<div>预留广告</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="renderer" content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>欢迎光临艺奇影院</title>
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+	<style type="text/css">
+		body {
+			background: #ccc url(/images/tk.jpg) no-repeat fixed center;
+			background-size: cover;
+			text-align: center;
+		}
+		h1 {
+			color: #333;
+		}
+		input {
+			width: 220px;
+			height: 30px;
+			font-size: 16px;
+			color: #333;
+			text-indent: 5px;
+			/*outline: none;*/
+		}
+		input::-webkit-calendar-picker-indicator { visibility: hidden; }
+		button {
+			height: 36px;
+			width: 66px;
+		}
+		.container {
+			width: 100%;
+			margin: 20px auto;
+			display: grid;
+			gap: 20px;
+			grid-template-columns: repeat(2, 1fr);
+			place-content: center;
+			place-items: center;
+			grid-auto-flow: row dense;
+		}
+		.item {
+			width: 100%;
+			height: 100%;
+			border: 1px solid #ccc;
+			background: rgba(255,255,255,0.9);
+		}
+		.item:hover {
+			background: rgba(0,0,0,0.8);
+			color: white;
+		}
+		.item:nth-child(1), .item:nth-child(111) {
+			overflow: hidden;
+			grid-column: span 2;
+		}
+		img {
+			max-height: 236px;
+			width: auto;
+		}
+		.score {
+			color: orange;
+		}
+
+		@media only screen and (min-width: 1000px) {
+			.container {
+				width: 1400px;
+				margin: 50px auto;
+				grid-template-columns: repeat(7, 1fr);
+			}
+			input {
+				width: 300px;
+			}
+		}		
+	</style>
+</head>
+<body>
+	<h1>艺奇影院 - 海量高清VIP视频免费观看</h1>
+	<input type="text" list="movie"><button>Enter</button>
+	<datalist id="movie">
+		<option value="叶问：张天志">
+		<option value="破冰行动">
+		<option value="少年江湖物语">
+		<option value="黄金瞳">
+		<option value="守护神之保险调查">
+	</datalist>
+
+	<div class="container">
+		<% for(let i in data) { %>
+		<div class="item">
+			<div><a href="/play?url=<%= data[i].href %>" target="_blank"><img src="https:<%= data[i].imgsrc %>" alt=""></a></div>
+			<div><span><a href="/play?url=<%= data[i].href %>" target="_blank"><%= data[i].title %></a></span> <span class="score"><%= data[i].score %>分</span></div>
+			<div><%= data[i].info %></div>
+		</div>
+		<% } %>
+	</div>
+
+
+
+<script type="text/javascript">
+	const btn = document.getElementsByTagName('button')[0];
+	const txt = document.getElementsByTagName('input')[0];
+
+	function so() {
+		if (txt.value == '') {
+			alert('空空如也');
+			return false;
+		}
+		let url = '/search?s=' + txt.value;
+		window.open(url);
+	}
+
+	btn.addEventListener('click', ()=>{so()});
+	txt.addEventListener('keydown', ()=>{
+		if(window.event.keyCode == 13) {
+			so();
+		}
+	});
+</script>
+</body>
+</html>
